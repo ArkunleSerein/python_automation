@@ -1,7 +1,7 @@
 # On crée la variable "saisi" avec un input afin de saisir le nombre voulu.
-saisi = int(input("Veuillez saisir un nombre entier : "))
+nb_saisi = int(input("Veuillez saisir un nombre entier : "))
 # On crée ensuite la variable résutat qui va contenir la formule demandée
-resultat = saisi % 3 == 0
+resultat = nb_saisi % 3 == 0
 
 
 # on crée un algorithme qui renvoi la phrase "Le nombre est divisible par 3" si le modulo == 0 
