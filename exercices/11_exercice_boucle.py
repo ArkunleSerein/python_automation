@@ -9,7 +9,7 @@ Cn = c # valeur du capital * le nombre d'année
 n = 0 # valeur initial de n
 
 while Cn < 2 * c: # Si Cn est inférieur à 2*c on continue le calcul Cn *= (1 + t) 
-    Cn *= (1 + t)  # On applique le taux d'accroissement chaque année
+    Cn *= (1 + t)  # On applique le taux chaque année
     n += 1
 
-print(f"Combien de temps la population sera atteinte : {n} années")
+print(f"Le capital initial {c} à atteint {round(Cn, 2)}, soit le double en {n} années ")
