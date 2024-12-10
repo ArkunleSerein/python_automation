@@ -3,10 +3,9 @@
 
 c = int(input("Capital actuel : ")) # la variable c la valeur du capital
 t = float(input("Le taux : "))  # la variable t le taux associé
-n = (c, t)  # la variable n le nombre d'année
 
-Cn = c # valeur du capital * le nombre d'année
-n = 0 # valeur initial de n
+Cn = c # Cn la valeur du capital initial * le nombre d'année
+n = 0 # valeur initial de n "l'année"
 
 while Cn < 2 * c: # Si Cn est inférieur à 2*c on continue le calcul Cn *= (1 + t) 
     Cn *= (1 + t)  # On applique le taux chaque année
