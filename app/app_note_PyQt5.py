@@ -5,6 +5,9 @@ from PyQt5.QtCore import Qt
 
 class SaisieNotesApp(QWidget):
     def __init__(self):
+        """
+        Constructeur de la classe SaisieNotesApp.
+        """
         super().__init__()
 
         # Titre de la fenêtre
@@ -17,6 +20,9 @@ class SaisieNotesApp(QWidget):
 
     def init_ui(self):
         # Création des éléments graphiques
+        """
+        Méthode qui crée les éléments graphiques de l'application.
+        """
         self.layout = QVBoxLayout()
 
         # Zone de saisie de la note
@@ -63,6 +69,19 @@ class SaisieNotesApp(QWidget):
         self.note_input.returnPressed.connect(self.ajouter_note)
 
     def ajouter_note(self):
+        """
+        Ajoute une note à la liste des notes si elle est valide.
+
+        Cette méthode tente de convertir le texte saisi en une note entière.
+        Si la note est négative, la saisie est considérée comme terminée, la
+        zone de saisie est désactivée, et un message est affiché pour indiquer
+        la fin de la saisie. Sinon, la note est ajoutée à la liste des notes, 
+        et l'affichage des notes est mis à jour. En cas d'entrée non valide,
+        un message d'erreur est affiché pour demander une entrée correcte.
+
+        Exceptions:
+            ValueError: Si le texte saisi ne peut pas être converti en entier.
+        """
         try:
             # Convertir le texte de la saisie en entier
             note = int(self.note_input.text())
@@ -82,12 +101,26 @@ class SaisieNotesApp(QWidget):
             self.result_label.setText("Veuillez entrer un nombre valide.")
 
     def afficher_notes(self):
+        """
+        Affiche les notes saisies dans la zone de texte de résultats.
+
+        Si la liste des notes est vide, affiche un message indiquant que
+        aucune note n'a été saisie. Sinon, affiche la liste des notes sous
+        forme de chaîne de caractères.
+        """
         if self.notes:
             self.result_label.setText(f"Notes saisies: {self.notes}")
         else:
             self.result_label.setText("Aucune note saisie.")
 
     def afficher_max(self):
+        """
+        Affiche la note maximale dans la zone de texte de résultats.
+
+        Si la liste des notes est vide, affiche un message indiquant que
+        aucune note n'a été saisie. Sinon, affiche la note maximale sous
+        forme de chaîne de caractères.
+        """
         if self.notes:
             self.result_label.setText(
                 f"La note maximale est : {max(self.notes)}")
@@ -95,6 +128,13 @@ class SaisieNotesApp(QWidget):
             self.result_label.setText("Aucune note saisie.")
 
     def afficher_min(self):
+        """
+        Affiche la note minimale dans la zone de texte de résultats.
+
+        Si la liste des notes est vide, affiche un message indiquant que
+        aucune note n'a été saisie. Sinon, affiche la note minimale sous
+        forme de chaîne de caractères.
+        """
         if self.notes:
             self.result_label.setText(
                 f"La note minimale est : {min(self.notes)}")
@@ -102,6 +142,13 @@ class SaisieNotesApp(QWidget):
             self.result_label.setText("Aucune note saisie.")
 
     def afficher_moyenne(self):
+        """
+        Affiche la moyenne des notes dans la zone de texte de résultats.
+
+        Si la liste des notes est vide, affiche un message indiquant que
+        aucune note n'a été saisie. Sinon, calcule et affiche la moyenne
+        des notes sous forme de chaîne de caractères avec deux décimales.
+        """
         if self.notes:
             moyenne = sum(self.notes) / len(self.notes)
             self.result_label.setText(
