@@ -60,7 +60,6 @@ def reset_game():
     nb_essai = 10
     nb_mystere = random.randint(1, 100)
     nb_joueur = None
-    ancien_ecart = None  # Réinitialiser l'écart précédent
     game_over = False  # Réinitialiser l'état de fin de jeu
     entry.delete(0, tk.END)  # Effacer la zone de saisie
     # Réinitialiser le nombre d'essais
@@ -91,7 +90,6 @@ root.geometry("500x500")  # Taille de la fenêtre
 nb_mystere = random.randint(1, 100)
 nb_essai = 10
 nb_joueur = None
-ancien_ecart = None  # Initialiser la variable pour l'écart
 score = 0  # Initialisation du score
 game_over = False  # Variable pour savoir si le jeu est terminé
 
