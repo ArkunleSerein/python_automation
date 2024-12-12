@@ -17,26 +17,26 @@
 # Compléter la fonction retour_inattendu , ajoutant un concurrent à la fin de la liste passée en argument.
 
 def afficher_classement(liste):
-    print("Classement actuel :")
-    for index, concurrent in enumerate(liste, start=1):
-        print(f"{index}. {concurrent}")
+    print("Classement :\n")
+    for index, concurrent in enumerate(liste, start=1): # Enumération de la liste
+        print(f"{index}. {concurrent}") # Affichage de l'index et du concurrent
 
 def panne_moteur(liste):
-    if len(liste) > 1:
-        liste.append(liste.pop(0))
+    if len(liste) > 1:  # Vérifie si la liste contient au moins deux modules
+        liste.append(liste.pop(0)) # Ajoute le premier module à la fin de la liste
 
 def passe_en_tete(liste):
     if len(liste) > 1:
-        liste[0], liste[1] = liste[1], liste[0]
+        liste[0], liste[1] = liste[1], liste[0] # Echange les deux premiers modules
 
 def sauve_honneur(liste):
     if len(liste) > 1:
-        liste[-2], liste[-1] = liste[-1], liste[-2]
+        liste[-2], liste[-1] = liste[-1], liste[-2] # Echange les deux derniers modules
 
 def tir_blaster(liste):
     global module_elimine  # Variable globale pour mémoriser le module éliminé
     if liste:
-        module_elimine = liste.pop(0)
+        module_elimine = liste.pop(0) # Enlève le premier module de la liste
 
 def retour_inattendu(liste):
     global module_elimine
