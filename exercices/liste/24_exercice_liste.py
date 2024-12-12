@@ -17,56 +17,28 @@
 # Compléter la fonction retour_inattendu , ajoutant un concurrent à la fin de la liste passée en argument.
 
 def afficher_classement(liste):
-    """
-    Affiche le classement de la course avec des numéros de position.
-    """
     print("Classement actuel :")
     for index, concurrent in enumerate(liste, start=1):
         print(f"{index}. {concurrent}")
 
-
 def panne_moteur(liste):
-    """
-    Déplace le premier module à la dernière position de la liste.
-    Si la liste est vide ou ne contient qu'un élément, rien n'est fait.
-    """
     if len(liste) > 1:
         liste.append(liste.pop(0))
 
-
 def passe_en_tete(liste):
-    """
-    Échange le premier et le deuxième module de la liste.
-    Si la liste ne contient pas au moins deux éléments, rien n'est fait.
-    """
     if len(liste) > 1:
         liste[0], liste[1] = liste[1], liste[0]
 
-
 def sauve_honneur(liste):
-    """
-    Échange les positions du dernier et de l'avant-dernier module.
-    Si la liste contient moins de deux éléments, rien n'est fait.
-    """
     if len(liste) > 1:
         liste[-2], liste[-1] = liste[-1], liste[-2]
 
-
 def tir_blaster(liste):
-    """
-    Supprime le premier module de la liste et le sauvegarde comme module éliminé.
-    Si la liste est vide, rien n'est fait.
-    """
     global module_elimine  # Variable globale pour mémoriser le module éliminé
     if liste:
         module_elimine = liste.pop(0)
 
-
 def retour_inattendu(liste):
-    """
-    Fait revenir le module éliminé en l'ajoutant à la fin de la liste.
-    Si aucun module n'a été éliminé, rien n'est fait.
-    """
     global module_elimine
     if 'module_elimine' in globals():  # Vérifie si un module a été éliminé
         liste.append(module_elimine)

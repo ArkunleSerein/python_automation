@@ -1,63 +1,89 @@
-# Via l'utilisation d'une variable de type liste, vous devrez réaliser un logiciel permettant à l'utilisateur
-# d'entrer une série de notes, dont le nombre possible à entrer sera soit (au choix de l'utilisateur) :
-# saisie avant la saisie de notes
-# permissif et pourra aller jusqu'à entrer une note négative qui stoppera la saisie des notes.
-# Une fois la saisie des notes terminée, l'utilisateur aura à sa disposition un affichage lui permettant
-# d'avoir la note max, la note min ainsi que la moyenne (possible de faire un menu pour choisir)
+# Exercice 23 : Saisie et gestion des notes
 
+# Fonction pour saisir les notes
 def saisie_notes():
     """
-    Fonction qui permet de saisir des notes. L'utilisateur peut entrer une
-    note positive, et lorsqu'il entre une note négative, la saisie s'arrête.
+    Fonction qui permet de saisir des notes. L'utilisateur peut choisir entre saisir un nombre de note
+    définie ou saisir un nombre négatif pour quitter.
     """
-    notes = []  # Liste pour stocker les notes
-    print("Bienvenue dans l'application de saisie de notes.")
-    print("Veuillez entrer les notes une par une. Entrez une note négative pour terminer.\n")
+    notes = [] 
+    
+    print("\n\n                Bienvenue dans l'application de saisie et gestion de notes.\n")
 
-    while True:
-        try:
-            # Demander une note à l'utilisateur
-            note = int(input(f"Veuillez saisir la note n°{len(notes) + 1}: "))
-            if note < 0:  # Si la note est négative, on arrête la saisie
-                break
-            notes.append(note)  # Ajouter la note à la liste
-        except ValueError:
-            # Gérer l'exception si l'utilisateur entre autre chose qu'un nombre
-            print("Entrée invalide. Veuillez entrer un nombre entier.")
-    return notes
+    print("\n     MENU : OPTION DE SAISI DE NOTE\n")
+    print("1 : Saisir un nombre de note définie")
+    print("2 : Saisir un nombre négatif pour quitter\n")
+    choix = int(input("Choisissez une option : "))
+
+    if choix == 1:
+        # Saisir un nombre de note définie
+        nb_notes = int(input("\n1 : Saisir un nombre de note définie\n\nEntrez le nombre de notes que vous souhaitez saisir : "))
+        i = 0
+        while i < nb_notes:
+            note = int(input(f"Veuillez saisir la note n°{f"{i + 1}/{nb_notes}"} (entre 0 et 20): "))
+            if note < 0:  
+                print("Entrée invalide. La note ne peut pas être négative.")
+                continue
+            if note > 20:  
+                print("Entrée invalide. La note ne peut pas être supérieure à 20.")
+                continue
+            notes.append(note) 
+            i += 1
+        return notes
 
 
+    if choix == 2:
+        # Saisir un nombre négatif pour quitter
+        print("\n2 : Saisir un nombre négatif pour quitter\n\nSaisissez un nombre négatif pour quitter.")
+        while True:
+            try:
+                note = int(input(f"Veuillez saisir la note n°{len(notes) + 1} (entre 0 et 20): "))
+                if note < 0:  
+                    break
+                if note > 20: 
+                    print("Entrée invalide. La note ne peut pas être supérieure à 20.")
+                    continue
+                notes.append(note)  
+            except ValueError:
+                print("Entrée invalide. Veuillez entrer un nombre entier.")
+        return notes
+
+# Fonction pour afficher les notes
 def affichage_notes(notes):
     """
-    Fonction qui affiche un menu pour afficher les notes saisies, la note
-    maximale, minimale ou la moyenne, et permet de quitter l'application.
+    Fonction qui permet d'afficher les notes. L'utilisateur peut choisir entre afficher les notes,
+    afficher la note maximale, afficher la note minimale, afficher la moyenne des notes ou quitter
+    l'application.
     """
-    if not notes:  # Si la liste est vide, on affiche un message
+    if not notes:  
         print("Aucune note saisie.")
         return
 
-    print("\nMenu des options :")
+    print("\n    MENU D'AFFICHAGE DE NOTES:\n")
     print("1 : Afficher les notes")
     print("2 : Afficher la note maximale")
     print("3 : Afficher la note minimale")
     print("4 : Afficher la moyenne des notes")
-    print("5 : Quitter l'application")
+    print("5 : Quitter l'application\n")
 
     while True:
         try:
-            # Demander à l'utilisateur de choisir une option
             choix = int(input("\nVeuillez choisir une option (1-5) : "))
             if choix == 1:
-                print(f"Les notes saisies sont : {notes}")
+                print(
+                    f"\n1 : Afficher les notes\n\nLes notes saisies sont : {notes}")
             elif choix == 2:
-                print(f"La note maximale est : {max(notes)}")
+                print(f"\n2 : Afficher la note maximale\n\nLa note maximale est : {
+                      max(notes)} / 20")
             elif choix == 3:
-                print(f"La note minimale est : {min(notes)}")
+                print(f"\n3 : Afficher la note minimale\n\nLa note minimale est : {
+                      min(notes)} / 20")
             elif choix == 4:
                 moyenne = sum(notes) / len(notes)
-                print(f"La moyenne des notes est : {moyenne:.2f}")
+                print(f"\n4 : Afficher la moyenne des notes\n\nLa moyenne des notes est : {
+                      moyenne:.2f} / 20")
             elif choix == 5:
-                print("Merci d'avoir utilisé l'application ! À bientôt.")
+                print("\n5 : Quitter l'application\n\nMerci d'avoir utilisé l'application ! À bientôt.")
                 break
             else:
                 print("Option invalide. Veuillez choisir une option entre 1 et 5.")
@@ -67,7 +93,6 @@ def affichage_notes(notes):
 
 # Programme principal
 if __name__ == "__main__":
-    notes = saisie_notes()  # Appel de la fonction pour saisir les notes
-    affichage_notes(notes)  # Appel de la fonction pour afficher les options
-
+    notes = saisie_notes()  
+    affichage_notes(notes)  
 
