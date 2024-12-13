@@ -139,10 +139,10 @@ def ajout_objet(personnages):
 
 # 2. Modifier les statistiques :
 # - Le personnage gagne un niveau et 20 points de vie supplémentaires.
-def gain_de_niveau(personnages, tueur_index, victime_index):
+def gain_de_niveau(personnages, attaquant_nom, cible_nom):
     # Vérifie si la victime est morte
-    if int(personnages[victime_index]["points_de_vie"]) <= 0:
-        personnage = personnages[tueur_index]
+    if int(personnages[cible_nom]["points_de_vie"]) <= 0:
+        personnage = personnages[attaquant_nom]
         personnage["niveau"] = str(int(personnage["niveau"]) + 1)
         personnage["points_de_vie"] = str(
             int(personnage["points_de_vie"]) + 20)
