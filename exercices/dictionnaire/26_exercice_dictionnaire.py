@@ -25,7 +25,14 @@ adresses = [{
     "cp": "75000"
     }
 ]
-
+def affichage_menu_principal():
+        print("\n\n                Bienvenue dans l'application de gestion des adresses.\n")
+        print("\n     MENU : OPTION DE GESTION DES ADRESSES\n")
+        print("1 : Afficher les adresses")
+        print("2 : Ajouter une adresse")
+        print("3 : Modifier une adresse")
+        print("4 : Supprimer une adresse")
+        print("5 : Quitter l'application\n")
 # Affiche les adresses
 def affichage_adresse(adresses):
     print("Afficher les adresses")
@@ -61,28 +68,25 @@ def suppression_adresse(adresses):
     index = int(input("index : ")) - 1
     del adresses[index]
 
+def menu_principal(adresses):
 
-while True:
-    print("\n\n                Bienvenue dans l'application de gestion des adresses.\n")
+    while True:
+        affichage_menu_principal()
+        choix = int(input("Choisissez une option : "))
+        if choix == 1:
+            affichage_adresse(adresses)
+        elif choix == 2:
+            ajout_adresse(adresses)
+        elif choix == 3:
+            edition_adresse(adresses)
+        elif choix == 4:
+            suppression_adresse(adresses)
+        elif choix == 5:
+            break
+        else:
+            print("Entrée invalide. Veuillez choisir une option valide.")
 
-    print("\n     MENU : OPTION DE GESTION DES ADRESSES\n")
-    print("1 : Afficher les adresses")
-    print("2 : Ajouter une adresse")
-    print("3 : Modifier une adresse")
-    print("4 : Supprimer une adresse")
-    print("5 : Quitter l'application\n")
-    choix = int(input("Choisissez une option : "))
-    if choix == 1:
-        affichage_adresse(adresses)
-    elif choix == 2:
-        ajout_adresse(adresses)
-    elif choix == 3:
-        edition_adresse(adresses)
-    elif choix == 4:
-        suppression_adresse(adresses)
-    elif choix == 5:
-        break
-    else:
-        print("Entrée invalide. Veuillez choisir une option valide.")
-
-print("\nAu revoir !")
+# Programme principal 
+if __name__ == "__main__":
+    menu_principal(adresses)
+    print("\nAu revoir !")
