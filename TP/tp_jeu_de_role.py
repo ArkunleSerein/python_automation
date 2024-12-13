@@ -216,8 +216,7 @@ def combat(personnages):
 def utilisation_potion(personnages):
     print("\nChoisissez le personnage à soigner : ")
     for i, personnage in enumerate(personnages, start=1):
-        print(f"{i}. {personnage['nom']}: {
-              personnage['points_de_vie']} points de vie")
+        print(f"{i}. {personnage['nom']}: {personnage['points_de_vie']} points de vie")
     choix = input("Entrez le numéro ou le nom du personnage : ")
     if choix.isdigit():
         index = int(choix) - 1
@@ -236,8 +235,7 @@ def utilisation_potion(personnages):
                 personnage["points_de_vie"] = str(
                     int(personnage["points_de_vie"]) + random.randint(1, 50))
             for i, personnage in enumerate(personnages, start=1):
-                print(f"{i}. {personnage['nom']}: {
-                      personnage['points_de_vie']} points de vie")
+                print(f"{i}. {personnage['nom']}: {personnage['points_de_vie']} points de vie")
             else:
                 print("Vous n'avez plus de potion.")
             break
