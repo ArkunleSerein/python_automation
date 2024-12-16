@@ -50,3 +50,5 @@ if verification_adn(sequence):  # Vérification de la validité de la séquence
           proportion(adn, sequence)}")
 else:
     print("La séquence d'ADN est invalide. Elle doit contenir uniquement 'a', 't', 'c' ou 'g'.")
+
+
