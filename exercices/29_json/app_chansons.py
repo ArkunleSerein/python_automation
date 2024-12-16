@@ -1,16 +1,6 @@
 import os
 import json
 
-
-def affichage_menu():
-    print("\n\n\n========== MENU PRINCIPAL ==========")
-    print("1 : Ajouter une chanson")
-    print("2 : Modifier une chanson")
-    print("3 : Supprimer une chanson")
-    print("4 : Afficher les chansons")
-    print("5 : Quitter")
-
-
 def charger_chansons():
     try:
         with open(path_file, "r", encoding="UTF-8") as file:
@@ -30,9 +20,18 @@ def ajout_chanson():
     nouvelle_chanson = {
         "Titre": input("Titre de la chanson : "),
         "Artiste": input("Artiste de la chanson : "),
-        "Catégorie": input("Catégorie de la chanson : "),
-        "Score": input("Score de la chanson (sur 5) : ")
+        "Catégorie": input("Catégorie de la chanson : ")
     }
+    while True:
+        try:
+            score = int(input("Score de la chanson (sur 5) : "))
+            if 0 <= score <= 5:
+                nouvelle_chanson["Score"] = score
+                break
+            else:
+                print("Veuillez entrer un score entre 0 et 5.")
+        except ValueError:
+            print("Entrée invalide. Le score doit avoir une valeur entre 0 et 5.")
     chansons.append(nouvelle_chanson)
     sauvegarder_chansons(chansons)
     print("La chanson a bien été ajoutée.")
@@ -49,7 +48,15 @@ def modifier_chanson():
         chanson["Titre"] = input("Titre de la chanson : ")
         chanson["Artiste"] = input("Artiste de la chanson : ")
         chanson["Catégorie"] = input("Catégorie de la chanson : ")
-        chanson["Score"] = input("Score de la chanson (sur 5) : ")
+        while True: 
+            try:
+                chanson["Score"] = int(input("Score de la chanson (sur 5) : "))
+                if 0 <= chanson["Score"] <= 5:
+                    break
+                else:
+                    raise ValueError
+            except ValueError:
+                print("Entrée invalide. Le score doit avoir une valeur entre 0 et 5.")
         sauvegarder_chansons(chansons)
         print("La chanson a bien été modifiée.")
     else:
@@ -77,8 +84,16 @@ def affichage_chansons():
         print(f"{index + 1} : {chanson.get("Titre")} - {chanson.get("Artiste")}")
         print(f"Catégorie : {chanson.get("Catégorie")}")
         print(f"Score : {chanson.get("Score")}")
-        print("------------------")
+        print("--------------------------------------------")
 
+
+def affichage_menu():
+    print("\n\n\n========== MENU PRINCIPAL ==========")
+    print("1 : Ajouter une chanson")
+    print("2 : Modifier une chanson")
+    print("3 : Supprimer une chanson")
+    print("4 : Afficher les chansons")
+    print("5 : Quitter")
 
 def main():
     while True:
@@ -95,6 +110,8 @@ def main():
             affichage_chansons()
         elif choix == "5":
             break
+        elif choix != "1" or choix != "2" or choix != "3" or choix != "4" or choix != "5":
+            print("Entrée invalide. Veuillez choisir une option valide.")
         else:
             print("Entrée invalide. Veuillez choisir une option valide.")
 
@@ -103,3 +120,4 @@ if __name__ == "__main__":
     os.makedirs("datas", exist_ok=True)
     path_file = os.path.join("datas", "music.json")
     main()
+
